@@ -1,4 +1,4 @@
-const { theme, ...theRest } = require('../../vendor/laravel/nova/tailwind.config')
+const { theme, ...theRest } = require('./vendor/laravel/nova/tailwind.config')
 
 module.exports = {
     ...theRest,
@@ -11,5 +11,9 @@ module.exports = {
             },
         },
     },
+    plugins: [
+        require('@tailwindcss/container-queries'),
+        require('@tailwindcss/typography'),
+    ],
     important: 'div[id^="collapsible-resource-manager"]',
 }

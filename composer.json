@@ -30,6 +30,12 @@
             ]
         }
     },
+    "repositories": {
+        "nova": {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    },
     "config": {
         "sort-packages": true
     },

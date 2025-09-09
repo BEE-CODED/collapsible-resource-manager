@@ -6,6 +6,8 @@
         "nova:install": "npm --prefix='../../vendor/laravel/nova' ci"
     },
     "devDependencies": {
+        "@tailwindcss/container-queries": "^0.1.1",
+        "@tailwindcss/typography": "^0.5.16",
         "@vue/compiler-sfc": "^3.4.27",
         "laravel-mix": "^6.0.41",
         "mix-tailwindcss": "^1.3.0",
@@ -18,6 +20,7 @@
         "vuex": "^4.1.0"
     },
     "dependencies": {
+        "@inertiajs/vue3": "^2.1.5",
         "laravel-nova-ui": "^0.4.12"
     }
 }
