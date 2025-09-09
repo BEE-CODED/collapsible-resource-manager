@@ -16,5 +16,8 @@
         "vue-collapsed": "^1.3.3",
         "vue-loader": "^17.4.2",
         "vuex": "^4.1.0"
+    },
+    "dependencies": {
+        "laravel-nova-ui": "^0.4.12"
     }
 }
