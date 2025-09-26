@@ -1,5 +1,9 @@
 @tailwind utilities;
 
+body {
+    overflow-y: hidden !important;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -8,9 +12,9 @@ header {
     z-index: 1;
 }
 
-/*[dusk="content"] {*/
-/*    padding-top: 56px !important;*/
-/*}*/
+[dusk="content"] {
+    margin-top: 56px !important;
+}
 
 [dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(1){
     position: fixed;
