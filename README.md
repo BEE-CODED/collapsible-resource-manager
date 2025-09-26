@@ -1,3 +1,5 @@
+Forked to fix errors on latest nova version.
+
 # Collapsible Resource Manager
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/digital-creative/collapsible-resource-manager)](https://packagist.org/packages/digital-creative/collapsible-resource-manager)
