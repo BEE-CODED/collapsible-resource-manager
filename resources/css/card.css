@@ -8,9 +8,9 @@ header {
     z-index: 1;
 }
 
-[dusk="content"] {
-    padding-top: 56px !important;
-}
+/*[dusk="content"] {*/
+/*    padding-top: 56px !important;*/
+/*}*/
 
 [dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(1){
     position: fixed;
