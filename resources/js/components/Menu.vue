@@ -15,7 +15,7 @@
 
                 <div v-for="menu of menus">
 
-                    <button
+                    <button v-if="menu.items?.length || menu.path"
                         class="hover:bg-gray-200 dark:hover:bg-gray-700 rounded w-[40px] h-[40px] flex justify-center items-center cursor-pointer"
                         :class="{
                             'text-primary-500': hasActiveMenu(menu),

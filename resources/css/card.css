@@ -12,9 +12,9 @@ header {
     z-index: 1;
 }
 
-/*[dusk="content"] {*/
-/*    margin-top: 56px !important;*/
-/*}*/
+[dusk="content"] {
+    padding-top: 56px !important;
+}
 
 [dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(1){
     position: fixed;
@@ -26,7 +26,6 @@ header {
 }
 
 [dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
-    margin-top: 56px !important;
     margin-left: 58px !important;
 }
 
@@ -37,6 +36,6 @@ header {
 }
 
 [dusk="content"] > div:nth-child(2){
-    max-height: 100vh;
+    max-height: calc(100vh - 56px);
     overflow-y: auto;
 }
