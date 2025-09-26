@@ -79,7 +79,7 @@
                             </div>
 
                             <div v-if="isDesktop">
-                                <CollapseButton :show="currentActiveMenu" @click="collapseMenu"/>
+                                <CollapseButton :show="!!currentActiveMenu" @click="collapseMenu"/>
                             </div>
 
                         </div>

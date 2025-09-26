@@ -3,3 +3,5 @@
         name: 'Noop',
     }
 </script>
+<template>
+</template>

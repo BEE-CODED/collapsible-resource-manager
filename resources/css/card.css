@@ -1,2 +1,37 @@
-@tailwind components;
 @tailwind utilities;
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+[dusk="content"] {
+    padding-top: 56px !important;
+}
+
+[dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(1){
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin-top: 56px !important;
+    height: 100%;
+}
+
+[dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
+    margin-left: 58px !important;
+}
+
+[dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1){
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    padding-bottom: 100px;
+}
+
+[dusk="content"] > div:nth-child(2){
+    max-height: 100vh;
+    overflow-y: auto;
+}

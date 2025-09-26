@@ -1,5 +1,5 @@
 <template>
-    <Button v-if="show" variant="action" icon="chevron-double-left" @click="collapseMainMenu"/>
+    <Button v-if="show" variant="action" icon="chevron-double-left"/>
 </template>
 
 <script>

@@ -12,11 +12,18 @@
       <span class="inline-flex items-center shrink-0 gap-2">
         <span class="hidden lg:inline-block">
           <Icon
+              v-if="currentUser.impersonating"
               name="finger-print"
               type="solid"
               class="!w-7 !h-7"
           />
-      </span>
+          <img
+              v-else-if="currentUser.avatar"
+              :alt="__(':name\'s Avatar', { name: userName })"
+              :src="currentUser.avatar"
+              class="rounded-full w-7 h-7"
+          />
+        </span>
       </span>
     </Button>
 
@@ -117,7 +124,7 @@ export default {
 
               Nova.redirectToLogin()
             })
-            .catch(e => {
+            .catch(_ => {
               router.reload()
             })
       }
@@ -154,7 +161,7 @@ export default {
         let method = i.method || 'GET'
         let props = { href: i.path }
 
-        if (i.external && method == 'GET') {
+        if (i.external && method === 'GET') {
           return {
             component: 'DropdownMenuItem',
             props: {
