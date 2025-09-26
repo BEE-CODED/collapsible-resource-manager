@@ -1,8 +1,8 @@
 @tailwind utilities;
 
-body {
-    overflow-y: hidden !important;
-}
+/*body {*/
+/*    overflow-y: hidden !important;*/
+/*}*/
 
 header {
     position: fixed;
@@ -12,9 +12,9 @@ header {
     z-index: 1;
 }
 
-[dusk="content"] {
-    margin-top: 56px !important;
-}
+/*[dusk="content"] {*/
+/*    margin-top: 56px !important;*/
+/*}*/
 
 [dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(1){
     position: fixed;
@@ -26,6 +26,7 @@ header {
 }
 
 [dusk="content"] > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
+    margin-top: 56px !important;
     margin-left: 58px !important;
 }
 
