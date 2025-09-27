@@ -51,8 +51,23 @@
         },
         methods: {
             handleClick() {
+                // Collapse immediately if configured
                 if (this.config.collapse_on_select) {
                     this.$store.state.mainMenuShown = false
+                }
+
+                // Resolve the parent section for the clicked item and persist via shared helper
+                try {
+                    const section = this.findSectionByItem(this.item)
+                    if (section) {
+                        this.saveToSessionStorage({
+                            currentActiveSection: section,
+                            currentActiveMenu: section,
+                            mainMenuShown: this.$store.state.mainMenuShown,
+                        })
+                    }
+                } catch (e) {
+                    // no-op: best-effort persistence
                 }
             },
         },
