@@ -50,7 +50,7 @@
                         class="border-gray-200 dark:border-gray-700 w-full"
                         style="margin: 10px 0"/>
 
-                    <UserMenu v-if="config.move_user_menu"/>
+                    <UserMenu v-if="config.move_user_menu" @menu-item-clicked="handleUserMenuItemClicked"/>
 
                 </div>
 
@@ -210,12 +210,10 @@ export default {
                     })
 
                 } else {
-
                     this.sidebarScrollBooster?.destroy()
                     this.sidePanelScrollBooster?.destroy()
                     this.sidebarScrollBooster = null
                     this.sidePanelScrollBooster = null
-
                 }
 
             },
@@ -294,6 +292,16 @@ export default {
         },
     },
     methods: {
+        handleUserMenuItemClicked() {
+            if (this.isMobile) {
+                this.toggleMainMenu()
+            } else {
+                this.collapseMenu()
+                this.currentActiveMenu = null
+                this.currentActiveSection = null
+                this.saveToSessionStorage()
+            }
+        },
         recursiveFind(menus) {
 
             if (menus.active === true) {
