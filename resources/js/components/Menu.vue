@@ -341,6 +341,10 @@ export default {
                 Nova.visit(menu.path.replace(new RegExp(`^${ Nova.config('base') }`), ''))
             } else if (this.currentActiveMenu?.key === menu?.key) {
                 this.toggleMainMenu()
+                this.currentActiveSection = this.findSectionByUrl(this.getCurrentUrl())
+                if (this.currentActiveSection?.key !== this.currentActiveMenu?.key) {
+                    this.currentActiveMenu = null
+                }
                 this.saveToSessionStorage()
             } else {
                 this.openMenu()
