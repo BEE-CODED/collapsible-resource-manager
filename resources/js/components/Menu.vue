@@ -50,7 +50,7 @@
                         class="border-gray-200 dark:border-gray-700 w-full"
                         style="margin: 10px 0"/>
 
-                    <UserMenu v-if="config.move_user_menu" @menu-item-clicked="handleUserMenuItemClicked"/>
+                    <UserMenu v-if="config.move_user_menu" @menu-item-clicked="handleUserMenuItemClicked" :moved-from-top="config.move_user_menu"/>
 
                 </div>
 

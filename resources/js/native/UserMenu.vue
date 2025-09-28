@@ -31,6 +31,11 @@
             <DropdownMenu width="200" class="px-1">
                 <nav class="py-1">
                     <div class="divide-y divide-gray-100 dark:divide-gray-700">
+                        <div v-if="movedFromTop">
+                            <DropdownMenuHeading class="pb-4">
+                                {{ userName }}
+                            </DropdownMenuHeading>
+                        </div>
                         <div v-if="formattedItems.length > 0">
                             <component
                                 :is="item.component"
@@ -40,12 +45,11 @@
                                 v-on="item.on"
                                 @click="$emit('menuItemClicked')"
                             >
-                <span v-if="item.badge" class="mr-1">
-                  <Badge :extra-classes="item.badge.typeClass">
-                    {{ item.badge.value }}
-                  </Badge>
-                </span>
-
+                                <span v-if="item.badge" class="mr-1">
+                                  <Badge :extra-classes="item.badge.typeClass">
+                                    {{ item.badge.value }}
+                                  </Badge>
+                                </span>
                                 {{ item.name }}
                             </component>
                         </div>
@@ -108,6 +112,7 @@ export default {
 
     props: {
         mobile: {type: Boolean, default: false},
+        movedFromTop: {type: Boolean, default: false},
     },
 
     emits: {
