@@ -47,10 +47,6 @@ export default {
             sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(data))
         },
         collapseMenu() {
-            this.currentActiveSection = this.findSectionByUrl(this.getCurrentUrl())
-            if (this.currentActiveSection?.key !== this.currentActiveMenu?.key) {
-                this.currentActiveMenu = null
-            }
             this.$store.state.mainMenuShown = false
         },
         openMenu() {

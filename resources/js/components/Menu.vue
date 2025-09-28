@@ -81,7 +81,7 @@
                             </div>
 
                             <div v-if="isDesktop">
-                                <CollapseButton :show="!!currentActiveMenu" @click="collapseMenu"/>
+                                <CollapseButton :show="!!currentActiveMenu" @click="closeMenu"/>
                             </div>
 
                         </div>
@@ -352,6 +352,13 @@ export default {
             }
 
 
+        },
+        closeMenu() {
+            this.currentActiveSection = this.findSectionByUrl(this.getCurrentUrl())
+            if (this.currentActiveSection?.key !== this.currentActiveMenu?.key) {
+                this.currentActiveMenu = null
+            }
+            this.collapseMenu()
         },
     },
 }
