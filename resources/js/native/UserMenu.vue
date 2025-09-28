@@ -10,7 +10,7 @@
             padding="tight"
         >
       <span class="inline-flex items-center shrink-0 gap-2">
-        <span class="hidden lg:inline-block">
+        <span class="inline-flex">
           <Icon
               v-if="currentUser.impersonating"
               name="finger-print"
