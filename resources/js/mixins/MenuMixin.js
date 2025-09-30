@@ -87,6 +87,7 @@ export default {
         },
         findSectionByPredicate(predicate) {
             const menus = this.$store.getters['mainMenu'] || []
+            console.log('Menues:', menus)
 
             const walk = items => {
                 if (!Array.isArray(items)) return false
