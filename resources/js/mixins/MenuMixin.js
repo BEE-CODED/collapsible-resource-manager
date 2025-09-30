@@ -128,6 +128,7 @@ export default {
             const normalizedUrl = this.normalizePath(url)
             if (!normalizedUrl) return null
 
+            console.log('Finding section for URL:', url, '->', normalizedUrl)
             // 1) Exact match first
             const exact = this.findSectionByPredicate(child => !!child.path && this.normalizePath(child.path) === normalizedUrl)
             if (exact) return exact
