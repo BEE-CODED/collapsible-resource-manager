@@ -57,7 +57,7 @@ export default {
                 this.collapseMenu()
             }
         },
-        // --- Added helpers below ---
+        // --- Helpers below ---
         getCurrentUrl() {
             try {
                 return this.$page?.url || window.location.pathname + window.location.search
@@ -87,7 +87,6 @@ export default {
         },
         findSectionByPredicate(predicate) {
             const menus = this.$store.getters['mainMenu'] || []
-            console.log('Menues:', menus)
 
             const walk = items => {
                 if (!Array.isArray(items)) return false
@@ -129,10 +128,8 @@ export default {
             const normalizedUrl = this.normalizePath(url)
             if (!normalizedUrl) return null
 
-            console.log('Finding section for URL:', url, '->', normalizedUrl)
             // 1) Exact match first
             const exact = this.findSectionByPredicate(child => !!child.path && this.normalizePath(child.path) === normalizedUrl)
-            console.log('Exact match:', exact)
             if (exact) return exact
 
             // 2) Longest-prefix match across menus and their items

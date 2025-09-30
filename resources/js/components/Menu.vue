@@ -148,23 +148,7 @@ export default {
             this.currentActiveMenu = null
         }
 
-        // Fallback: if no saved state, derive active section by matching current URL to item.path
-        // Only run now if menu data is already available; otherwise, the watcher on `menus` will handle it.
-        if (!this.currentActiveSection) {
-            const hasMenus = Array.isArray(this.$store?.getters?.['mainMenu']) && this.$store.getters['mainMenu'].length > 0
-            if (hasMenus) {
-                const section = this.findSectionByUrl(this.getCurrentUrl())
-                if (section) {
-                    this.currentActiveSection = section
-                    // Only set currentActiveMenu if the section actually has items (to avoid opening the panel for link-only menus)
-                    if (Array.isArray(section.items) && section.items.length > 0) {
-                        this.currentActiveMenu = section
-                        this.openMenu()
-                    }
-                    this.saveToSessionStorage()
-                }
-            }
-        }
+        // URL fallback is now handled solely by the `menus` watcher once menus are available.
     },
     watch: {
         '$store.getters.mainMenuShown': {
