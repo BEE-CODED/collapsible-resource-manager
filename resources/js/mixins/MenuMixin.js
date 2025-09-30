@@ -131,6 +131,7 @@ export default {
             console.log('Finding section for URL:', url, '->', normalizedUrl)
             // 1) Exact match first
             const exact = this.findSectionByPredicate(child => !!child.path && this.normalizePath(child.path) === normalizedUrl)
+            console.log('Exact match:', exact)
             if (exact) return exact
 
             // 2) Longest-prefix match across menus and their items
