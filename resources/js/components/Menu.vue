@@ -149,16 +149,20 @@ export default {
         }
 
         // Fallback: if no saved state, derive active section by matching current URL to item.path
+        // Only run now if menu data is already available; otherwise, the watcher on `menus` will handle it.
         if (!this.currentActiveSection) {
-            const section = this.findSectionByUrl(this.getCurrentUrl())
-            if (section) {
-                this.currentActiveSection = section
-                // Only set currentActiveMenu if the section actually has items (to avoid opening the panel for link-only menus)
-                if (Array.isArray(section.items) && section.items.length > 0) {
-                    this.currentActiveMenu = section
-                    this.openMenu()
+            const hasMenus = Array.isArray(this.$store?.getters?.['mainMenu']) && this.$store.getters['mainMenu'].length > 0
+            if (hasMenus) {
+                const section = this.findSectionByUrl(this.getCurrentUrl())
+                if (section) {
+                    this.currentActiveSection = section
+                    // Only set currentActiveMenu if the section actually has items (to avoid opening the panel for link-only menus)
+                    if (Array.isArray(section.items) && section.items.length > 0) {
+                        this.currentActiveMenu = section
+                        this.openMenu()
+                    }
+                    this.saveToSessionStorage()
                 }
-                this.saveToSessionStorage()
             }
         }
     },
@@ -176,7 +180,7 @@ export default {
                     this.$nextTick(() => {
 
                         const offset = 40 + 25
-                        const {height} = this.$refs.fixedMenu.getBoundingClientRect()
+                        const height = this.$refs.fixedMenu?.getBoundingClientRect?.().height || 0
 
                         this.viewportSidebarHeight = `${window.innerHeight - height - offset}px`
                         this.viewportSidePanelHeight = `${window.innerHeight - 40 - 10}px`
@@ -218,6 +222,24 @@ export default {
 
             },
         },
+        // When menus become available (after async Nova boot), try URL-based fallback once
+        menus: {
+            immediate: true,
+            handler(menus) {
+                if (this.currentActiveSection) return
+                if (!Array.isArray(menus) || menus.length === 0) return
+
+                const section = this.findSectionByUrl(this.getCurrentUrl())
+                if (section) {
+                    this.currentActiveSection = section
+                    if (Array.isArray(section.items) && section.items.length > 0) {
+                        this.currentActiveMenu = section
+                        this.openMenu()
+                    }
+                    this.saveToSessionStorage()
+                }
+            },
+        },
     },
     computed: {
         isMobile() {
@@ -244,12 +266,13 @@ export default {
              * For whatever reason, laravel nova sometimes returns some menu items with null items within...
              * so this filter them out to avoid the panel expanding blank
              */
-            const menus = cloneDeep(this.$store.getters['mainMenu'])
+            const raw = this.$store?.getters?.['mainMenu'] || []
+            const menus = cloneDeep(raw)
 
             for (const menu of menus) {
 
-                if (menu.items.length) {
-                    menu.items = menu.items.filter(item => item.component !== null)
+                if (menu.items?.length) {
+                    menu.items = menu.items.filter(item => item && item.component !== null)
                 }
 
             }
@@ -269,13 +292,13 @@ export default {
             if (!this.config.section_title) {
 
                 const groups = {
-                    name: menu.name,
-                    key: menu.key,
+                    name: menu?.name,
+                    key: menu?.key,
                     component: 'menu-group',
                     items: [],
                 }
 
-                const items = menu.items
+                const items = (menu?.items || [])
                     .map(item => item.component === 'menu-item' ? groups.items.push(item) : item)
                     .filter(Boolean)
 
@@ -287,7 +310,7 @@ export default {
 
             }
 
-            return menu.items.filter(Boolean)
+            return (menu?.items || []).filter(Boolean)
 
         },
     },
@@ -334,7 +357,7 @@ export default {
 
             this.currentActiveSection = menu
 
-            if (menu.items.length === 0 && menu.path) {
+            if ((menu.items?.length || 0) === 0 && menu.path) {
                 this.collapseMenu()
                 this.currentActiveMenu = null
                 this.saveToSessionStorage()
